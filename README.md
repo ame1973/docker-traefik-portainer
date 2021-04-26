@@ -7,6 +7,24 @@ This set-up makes container management & deployment a breeze and the reverse pro
 Detailed explanation how to use this in my blog post:
 [Docker container management with Traefik v2 and Portainer](https://rafrasenberg.com/posts/docker-container-management-with-traefik-v2-and-portainer/)
 
+## Setting
+
+core/docker-compose.yml
+
+- change `traefik.YOURDOMAIN.com` and `portainer.YOURDOMAIN.com`
+
+vloumes/traefik/traefik.yml
+
+change 
+
+```
+certificatesResolvers:
+  letsencrypt:
+    acme:
+      email: tech@YOURDOMAIN.com
+```
+
+
 ## How to run it?
 
 ```
