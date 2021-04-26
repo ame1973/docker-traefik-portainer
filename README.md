@@ -9,6 +9,10 @@ Detailed explanation how to use this in my blog post:
 
 ## Setting
 
+add docker network
+
+`docker network create traefik-proxy`
+
 core/docker-compose.yml
 
 - change `traefik.YOURDOMAIN.com` and `portainer.YOURDOMAIN.com`
@@ -24,6 +28,11 @@ certificatesResolvers:
       email: tech@YOURDOMAIN.com
 ```
 
+vloumes/traefik/acme.json
+
+```
+sudo chmod 600 acme.json
+```
 
 ## How to run it?
 
