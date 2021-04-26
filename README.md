@@ -28,7 +28,10 @@ certificatesResolvers:
 ## How to run it?
 
 ```
-$ git clone https://github.com/rafrasenberg/docker-traefik-portainer ./src
-$ cd src/core
+$ git clone https://github.com/ame1973/docker-traefik-portainer.git
+$ cd docker-traefik-portainer/core
+
+# update setting
+
 $ docker-compose up -d
 ```
