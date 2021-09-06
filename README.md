@@ -34,6 +34,21 @@ vloumes/traefik/acme.json
 sudo chmod 600 acme.json
 ```
 
+### change basic auth
+
+https://www.web2generators.com/apache-tools/htpasswd-generator
+
+vloumes/traefik/traefik.yml
+
+change 
+
+```
+user-auth:
+      basicAuth:
+        users:
+          - "NEW_AUTH_STRING"
+```
+
 ## How to run it?
 
 ```
