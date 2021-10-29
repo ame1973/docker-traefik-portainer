@@ -17,7 +17,7 @@ core/docker-compose.yml
 
 - change `traefik.YOURDOMAIN.com` and `portainer.YOURDOMAIN.com`
 
-vloumes/traefik/traefik.yml
+volumes/traefik/traefik.yml
 
 change 
 
@@ -28,7 +28,7 @@ certificatesResolvers:
       email: tech@YOURDOMAIN.com
 ```
 
-vloumes/traefik/acme.json
+volumes/traefik/acme.json
 
 ```
 sudo chmod 600 acme.json
