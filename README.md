@@ -38,7 +38,7 @@ sudo chmod 600 acme.json
 
 https://www.web2generators.com/apache-tools/htpasswd-generator
 
-vloumes/traefik/traefik.yml
+volumes/traefik/configurations/dynamic.yml
 
 change 
 
