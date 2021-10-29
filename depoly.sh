@@ -19,7 +19,7 @@ sudo chmod 600 acme.json
 
 cd configurations
 cp dynamic.example dynamic.yml
-htpasswd -b -c passward $traefikUsername $traefikPassword
+htpasswd -b -c password $traefikUsername $traefikPassword
 password=$(head -n 1 password)
 sed -i "s/NEW_AUTH_STRING/$password/g" dynamic.yml
 rm password
