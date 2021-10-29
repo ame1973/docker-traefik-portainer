@@ -12,7 +12,7 @@ http:
     user-auth:
       basicAuth:
         users:
-          - "admin:$apr1$CCDNpOvx$5ahZ.TkiD5aQ7t8pyy.0W0"
+          - "NEW_AUTH_STRING"
 
 tls:
   options:
