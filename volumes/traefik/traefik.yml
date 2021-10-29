@@ -27,7 +27,7 @@ providers:
 certificatesResolvers:
   letsencrypt:
     acme:
-      email: SSH_EMAIL_ADDRESS
+      email: tech@huanxiang.codes
       storage: acme.json
       keyType: EC384
       httpChallenge:

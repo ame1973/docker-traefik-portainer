@@ -30,3 +30,5 @@ sudo chmod +x /usr/local/bin/docker-compose
 docker -v
 
 docker–compose –version
+
+docker network create traefik-proxy
