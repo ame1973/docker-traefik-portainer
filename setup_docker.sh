@@ -20,6 +20,8 @@ echo \
 
 sudo apt-get update && sudo apt-get -y install docker-ce docker-ce-cli containerd.io
 
+sudo gpasswd -a $USER docker
+newgrp docker
 sudo usermod -aG docker $USER
 
 sudo apt update && sudo apt upgrade
