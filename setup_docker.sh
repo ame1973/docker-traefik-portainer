@@ -30,6 +30,6 @@ sudo apt update && sudo apt -y install docker–compose
 
 docker -v
 
-docker–compose –version
+docker–compose version
 
 docker network create traefik-proxy
