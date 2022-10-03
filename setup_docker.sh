@@ -20,13 +20,13 @@ echo \
 
 sudo apt-get update && sudo apt-get -y install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 
+sudo apt update && sudo apt -y install docker–compose
+
 sudo service docker start
 
 sudo gpasswd -a $USER docker
 newgrp docker
 sudo usermod -aG docker $USER
-
-sudo apt update && sudo apt -y install docker–compose
 
 docker -v
 
