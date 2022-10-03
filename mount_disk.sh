@@ -19,6 +19,6 @@ DISK=$(lsblk -o NAME,FSTYPE,UUID| grep xfs | awk '{print $1}')
 FSTYPE=$(lsblk -o NAME,FSTYPE,UUID| grep xfs | awk '{print $2}')
 UUID=$(lsblk -o NAME,FSTYPE,UUID| grep xfs | awk '{print $3}')
 
-sudo echo "UUID={$UUID}	/home/ubuntu/project	{$FSTYPE}	defaults,nofail	0	2" >> /etc/fstab
+sudo echo "UUID=$UUID	/home/ubuntu/project	$FSTYPE	defaults,nofail	0	2" >> /etc/fstab
 
 echo "[INFO] DONE!"
