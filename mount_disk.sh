@@ -8,6 +8,11 @@ if [ "${confirm}" != "y" ] && [ "${confirm}" != "Y" ]; then
     exit 0;
 fi
 
+if [ "$EUID" -ne 0 ]
+  then echo "Please run as root"
+  exit
+fi
+
 sudo mkfs -t xfs /dev/nvme1n1
 
 sudo mkdir /home/ubuntu/project
