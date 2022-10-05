@@ -8,9 +8,9 @@ if [ "${confirm}" != "y" ] && [ "${confirm}" != "Y" ]; then
     exit 0;
 fi
 
-if (( $EUID != 0 )); then
-    echo "Please run as root"
-    exit
+if [[ $EUID > 0 ]]; then # we can compare directly with this syntax.
+  echo "Please run as root/sudo"
+  exit 1
 fi
 
 sudo mkfs -t xfs /dev/nvme1n1
