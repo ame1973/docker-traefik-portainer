@@ -20,7 +20,7 @@ echo \
 
 sudo apt-get update && sudo apt-get -y install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 
-sudo apt update && sudo apt -y install docker–compose
+#sudo apt update && sudo apt -y install docker–compose
 
 sudo service docker start
 
@@ -30,6 +30,6 @@ sudo usermod -aG docker $USER
 
 docker -v
 
-docker–compose version
+docker compose version
 
 docker network create traefik-proxy
