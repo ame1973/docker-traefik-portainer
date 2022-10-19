@@ -25,7 +25,12 @@ sudo apt-get update && sudo apt-get -y install docker-ce docker-ce-cli container
 sudo service docker start
 
 sudo gpasswd -a $USER docker
-newgrp docker
+
+/usr/bin/newgrp dokcer <<EONG
+echo "newgrp docker"
+id
+EONG
+
 sudo usermod -aG docker $USER
 
 docker -v
