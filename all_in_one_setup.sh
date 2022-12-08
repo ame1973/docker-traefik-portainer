@@ -8,6 +8,13 @@ git clone https://github.com/ame1973/docker-traefik-portainer.git
 
 git clone https://github.com/ame1973/docker-laravel-base-env.git
 
+
+# Install Docker
+
 cd docker-traefik-portainer
 
-sh test.sh
+/bin/bash mount_disk.sh -s Y
+
+/bin/bash setup_docker.sh
+
+/bin/bash test.sh

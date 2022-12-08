@@ -13,6 +13,13 @@ if [[ $EUID > 0 ]]; then # we can compare directly with this syntax.
   exit 1
 fi
 
+if test -b /dev/nvme1n1; then
+    echo "[INFO] Has nvme1n1"
+else
+    echo "[ERROR] not nvme1n1"
+    exit 1
+fi
+
 sudo mkfs -t xfs /dev/nvme1n1
 
 sudo mkdir /home/ubuntu/project
