@@ -1,12 +1,15 @@
 #!/bin/bash
 
 DEFAULT="n"
-read -p "THIS Script ONLY FOR AWS Ubuntu OS!! SURE? [y/N]: " confirm
-confirm="${confirm:-${DEFAULT}}"
-if [ "${confirm}" != "y" ] && [ "${confirm}" != "Y" ]; then
-    echo "[INFO] End script"
-    exit 0;
+if [ "${1}" != "y" ] && [ "${1}" != "Y" ]; then
+    read -p "THIS Script ONLY FOR AWS Ubuntu OS!! SURE? [y/N]: " confirm
+    confirm="${confirm:-${DEFAULT}}"
+    if [ "${confirm}" != "y" ] && [ "${confirm}" != "Y" ]; then
+        echo "[INFO] End script"
+        exit 0;
+    fi
 fi
+
 
 if [[ $EUID > 0 ]]; then # we can compare directly with this syntax.
   echo "Please run as root/sudo"
@@ -19,6 +22,9 @@ else
     echo "[ERROR] not nvme1n1"
     exit 1
 fi
+
+echo "DEV stop"
+exit 1
 
 sudo mkfs -t xfs /dev/nvme1n1
 
