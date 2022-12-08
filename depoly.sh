@@ -14,6 +14,7 @@ else
     traefikPassword=${2}
 fi
 
+echo "START DEPLOY DOCKER Service"
 
 cd core
 cp docker-compose.example docker-compose.yml
