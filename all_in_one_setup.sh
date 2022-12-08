@@ -13,7 +13,7 @@ git clone https://github.com/ame1973/docker-laravel-base-env.git
 
 cd docker-traefik-portainer
 
-sh mount_disk.sh Y
+/bin/bash mount_disk.sh Y
 
 /bin/bash setup_docker.sh
 
