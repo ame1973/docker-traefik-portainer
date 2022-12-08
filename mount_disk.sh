@@ -25,9 +25,6 @@ else
     exit 1
 fi
 
-echo "DEV stop"
-exit 1
-
 sudo mkfs -t xfs /dev/nvme1n1
 
 sudo mkdir /home/ubuntu/project
