@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "[INFO] Running mount_disk.sh"
+
 DEFAULT="n"
 if [ "${1}" != "y" ] && [ "${1}" != "Y" ]; then
     read -p "THIS Script ONLY FOR AWS Ubuntu OS!! SURE? [y/N]: " confirm
