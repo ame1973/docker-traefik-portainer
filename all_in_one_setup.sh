@@ -1,5 +1,8 @@
 #!/bin/bash
 
+read -p 'Server Domain: ' serverDomain
+read -sp 'Server Password: ' serverPassword
+
 apt update && apt upgrade -y
 
 apt install sudo git curl -y
@@ -16,5 +19,7 @@ cd docker-traefik-portainer
 /bin/bash mount_disk.sh Y
 
 /bin/bash setup_docker.sh
+
+/bin/bash depoly.sh $serverDomain $serverPassword
 
 /bin/bash test.sh

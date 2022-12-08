@@ -1,10 +1,19 @@
 #!/bin/bash
 
-read -p 'Portainer Panel Domain: ' portainerDomain
-read -p 'Traefik Panel Domain: ' traefikDomain
-read -p 'Traefik SSH Email: ' traefikEmail
-read -p 'Traefik login Username: ' traefikUsername
-read -p 'Traefik login Password: ' traefikPassword
+if [ "${1}" == "" ] ; then
+    read -p 'Portainer Panel Domain: ' portainerDomain
+    read -p 'Traefik Panel Domain: ' traefikDomain
+    read -p 'Traefik SSH Email: ' traefikEmail
+    read -p 'Traefik login Username: ' traefikUsername
+    read -p 'Traefik login Password: ' traefikPassword
+else
+    portainerDomain=p.${1}
+    traefikDomain=t.${1}
+    traefikEmail=${1}@nft-investment.io
+    traefikUsername=nftiv.admin
+    traefikPassword=${2}
+fi
+
 
 cd core
 cp docker-compose.example docker-compose.yml
