@@ -1,7 +1,13 @@
 #!/bin/bash
 
-read -p 'Server Domain: ' serverDomain
-read -sp 'Server Password: ' serverPassword
+if [ "${1}" == "" ] ; then
+  read -p 'Server Domain: ' serverDomain
+fi
+
+if [ "${2}" == "" ] ; then
+  read -sp 'Server Password: ' serverPassword
+fi
+
 
 apt update && apt upgrade -y
 
