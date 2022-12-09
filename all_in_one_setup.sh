@@ -1,5 +1,11 @@
 #!/bin/bash
 
+echo "----------------------------------------"
+echo " "
+echo " ALL IN ONE SETUP SCRIPT"
+echo " "
+echo "----------------------------------------"
+
 if [ "${1}" == "" ] ; then
   read -p 'Server Domain: ' serverDomain
 else
@@ -22,7 +28,6 @@ git clone https://github.com/ame1973/docker-traefik-portainer.git
 git clone https://github.com/ame1973/docker-laravel-base-env.git
 
 echo "[INFO] Clone done"
-echo "----------------------------------------"
 
 # Install Docker
 
