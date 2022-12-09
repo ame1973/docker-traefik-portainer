@@ -52,6 +52,8 @@ rm password
 
 echo "[INFO] DEPLOY DOCKER Service DONE"
 
+pwd
+
 cd ../../core
 
 docker compose up -d
