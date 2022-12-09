@@ -43,7 +43,7 @@ cd /home/ubuntu/docker-traefik-portainer
 
 /bin/bash setup_docker.sh
 
-/bin/bash depoly.sh "$serverDomain" "$serverPassword"
+/bin/bash depoly.sh $serverDomain $serverPassword
 
 echo "[INFO] Setup done"
 
