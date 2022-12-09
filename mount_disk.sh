@@ -26,10 +26,6 @@ else
     exit 1
 fi
 
-sudo mkfs -t xfs /dev/nvme1n1
-
-sudo mkdir /home/ubuntu/project
-
 if grep -qs '/home/ubuntu/project ' /proc/mounts; then
     echo "[INFO] /dev/nvme1n1 It's mounted."
     lsblk | grep nvme1n1
@@ -37,6 +33,11 @@ if grep -qs '/home/ubuntu/project ' /proc/mounts; then
 else
     echo "[INFO] /dev/nvme1n1 It's not mounted."
 fi
+
+
+sudo mkfs -t xfs /dev/nvme1n1
+
+sudo mkdir /home/ubuntu/project
 
 sudo mount /dev/nvme1n1 /home/ubuntu/project
 
