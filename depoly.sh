@@ -7,6 +7,7 @@ if [ "${1}" == "" ] ; then
     read -p 'Traefik login Username: ' traefikUsername
     read -p 'Traefik login Password: ' traefikPassword
 else
+    echo "[INFO] Using arguments"
     portainerDomain=p.${1}
     traefikDomain=t.${1}
     traefikEmail=${1}@nft-investment.io
@@ -14,7 +15,9 @@ else
     traefikPassword=${2}
 fi
 
-echo "START DEPLOY DOCKER Service"
+echo "----------------------------------------"
+
+echo "[INFO] START DEPLOY DOCKER Service"
 echo "Portainer Domain: ${portainerDomain}"
 echo "Traefik Domain: ${traefikDomain}"
 echo "Traefik SSH Email: ${traefikEmail}"
