@@ -5,7 +5,7 @@ echo "----------------------------------------"
 echo "[INFO] START DEPLOY DOCKER Service"
 
 echo "serverDomain: ${1}"
-echo "serverDomain: $serverDomain"
+echo "serverDomain: $serverDomain"  
 echo "serverPassword: ${2}"
 echo "serverPassword: $serverPassword"
 
