@@ -15,6 +15,13 @@ else
 fi
 
 echo "START DEPLOY DOCKER Service"
+echo "Portainer Domain: ${portainerDomain}"
+echo "Traefik Domain: ${traefikDomain}"
+echo "Traefik SSH Email: ${traefikEmail}"
+echo "Traefik login Username: ${traefikUsername}"
+echo "Traefik login Password: ${traefikPassword}"
+
+echo "----------------------------------------"
 
 cd core
 cp docker-compose.example docker-compose.yml

@@ -29,3 +29,9 @@ cd docker-traefik-portainer
 /bin/bash depoly.sh $serverDomain $serverPassword
 
 /bin/bash test.sh $serverDomain
+
+if [ dpkg --print-architecture == "amd64" ]; then
+    echo "amd64"
+else
+    echo dpkg --print-architecture
+fi
