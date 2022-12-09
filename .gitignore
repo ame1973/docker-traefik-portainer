@@ -1,3 +1,6 @@
 
 .idea/
 core/docker-compose.yml
+volumes/traefik/configurations/dynamic.yml
+
+volumes/traefik/traefik.yml

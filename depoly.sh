@@ -1,18 +1,18 @@
 #!/bin/bash
 
-if [ "${1}" == "" ] ; then
-    read -p 'Portainer Panel Domain: ' portainerDomain
-    read -p 'Traefik Panel Domain: ' traefikDomain
-    read -p 'Traefik SSH Email: ' traefikEmail
-    read -p 'Traefik login Username: ' traefikUsername
-    read -p 'Traefik login Password: ' traefikPassword
+if  [$serverDomain == ""] || [$serverPassword == ""]; then
+  read -p 'Portainer Panel Domain: ' portainerDomain
+  read -p 'Traefik Panel Domain: ' traefikDomain
+  read -p 'Traefik SSH Email: ' traefikEmail
+  read -p 'Traefik login Username: ' traefikUsername
+  read -p 'Traefik login Password: ' traefikPassword
 else
-    echo "[INFO] Using arguments"
-    portainerDomain=p.${1}
-    traefikDomain=t.${1}
-    traefikEmail=${1}@nft-investment.io
-    traefikUsername=nftiv.admin
-    traefikPassword=${2}
+  echo "[INFO] Using arguments"
+  portainerDomain=p.${1}
+  traefikDomain=t.${1}
+  traefikEmail=${1}@nft-investment.io
+  traefikUsername=nftiv.admin
+  traefikPassword=${2}
 fi
 
 echo "----------------------------------------"
@@ -45,4 +45,3 @@ sed -i "s/NEW_AUTH_STRING/$password/g" dynamic.yml
 rm password
 
 echo "Done!"
-
