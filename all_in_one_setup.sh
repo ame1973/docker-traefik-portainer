@@ -21,6 +21,8 @@ git clone https://github.com/ame1973/docker-traefik-portainer.git
 
 git clone https://github.com/ame1973/docker-laravel-base-env.git
 
+echo "[INFO] Clone done"
+echo "----------------------------------------"
 
 # Install Docker
 

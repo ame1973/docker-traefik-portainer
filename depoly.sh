@@ -1,5 +1,14 @@
 #!/bin/bash
 
+echo "----------------------------------------"
+
+echo "[INFO] START DEPLOY DOCKER Service"
+
+echo "serverDomain: ${1}"
+echo "serverDomain: $serverDomain"
+echo "serverPassword: ${2}"
+echo "serverPassword: $serverPassword"
+
 if  [$serverDomain == ""] || [$serverPassword == ""]; then
   read -p 'Portainer Panel Domain: ' portainerDomain
   read -p 'Traefik Panel Domain: ' traefikDomain
@@ -15,9 +24,6 @@ else
   traefikPassword=${2}
 fi
 
-echo "----------------------------------------"
-
-echo "[INFO] START DEPLOY DOCKER Service"
 echo "Portainer Domain: ${portainerDomain}"
 echo "Traefik Domain: ${traefikDomain}"
 echo "Traefik SSH Email: ${traefikEmail}"

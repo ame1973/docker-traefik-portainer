@@ -41,4 +41,4 @@ sudo echo "UUID=$UUID	/home/ubuntu/project	$FSTYPE	defaults,nofail	0	2" >> /etc/
 sudo chown ubuntu /home/ubuntu/project
 sudo chgrp ubuntu /home/ubuntu/project
 
-echo "[INFO] DONE!"
+echo "[INFO] Mount Disk DONE"

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "[INFO] Running setup_docker"
+
 sudo apt update && sudo apt upgrade -y
 
 sudo apt-get -y install \
@@ -38,3 +40,5 @@ docker -v
 docker compose version
 
 docker network create traefik-proxy
+
+echo "[INFO] Setup Docker DONE"
