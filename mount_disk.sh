@@ -1,5 +1,6 @@
 #!/bin/bash
 
+echo "----------------------------------------"
 echo "[INFO] Running mount_disk.sh"
 
 DEFAULT="n"

@@ -1,5 +1,5 @@
 #!/bin/bash
-
+echo "----------------------------------------"
 echo "[INFO] Running setup_docker"
 
 sudo apt update && sudo apt upgrade -y

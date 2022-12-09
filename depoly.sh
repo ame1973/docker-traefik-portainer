@@ -5,11 +5,11 @@ echo "----------------------------------------"
 echo "[INFO] START DEPLOY DOCKER Service"
 
 echo "serverDomain: ${1}"
-echo "serverDomain: $serverDomain"  
+echo "serverDomain: $serverDomain"
 echo "serverPassword: ${2}"
 echo "serverPassword: $serverPassword"
 
-if  [$serverDomain == ""] || [$serverPassword == ""]; then
+if  [${serverDomain} == ""] || [${serverPassword} == ""]; then
   read -p 'Portainer Panel Domain: ' portainerDomain
   read -p 'Traefik Panel Domain: ' traefikDomain
   read -p 'Traefik SSH Email: ' traefikEmail
