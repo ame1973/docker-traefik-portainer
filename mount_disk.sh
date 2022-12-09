@@ -29,6 +29,15 @@ fi
 sudo mkfs -t xfs /dev/nvme1n1
 
 sudo mkdir /home/ubuntu/project
+
+if grep -qs '/home/ubuntu/project ' /proc/mounts; then
+    echo "[INFO] /dev/nvme1n1 It's mounted."
+    lsblk | grep nvme1n1
+    exit 1
+else
+    echo "[INFO] /dev/nvme1n1 It's not mounted."
+fi
+
 sudo mount /dev/nvme1n1 /home/ubuntu/project
 
 sudo cp /etc/fstab /etc/fstab.old
