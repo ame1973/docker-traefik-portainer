@@ -50,4 +50,8 @@ password=$(head -n 1 password)
 sed -i "s/NEW_AUTH_STRING/$password/g" dynamic.yml
 rm password
 
-echo "Done!"
+echo "[INFO] DEPLOY DOCKER Service DONE"
+
+cd ../../core
+
+docker compose up -d
