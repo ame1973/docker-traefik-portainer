@@ -1,9 +1,9 @@
 #!/bin/bash
 
 echo "----------------------------------------"
-echo " "
-echo " ALL IN ONE SETUP SCRIPT"
-echo " "
+echo "# "
+echo "# ALL IN ONE SETUP SCRIPT"
+echo "# "
 echo "----------------------------------------"
 
 if [[ $EUID > 0 ]]; then # we can compare directly with this syntax.
@@ -14,13 +14,13 @@ fi
 if [ "${1}" == "" ] ; then
   read -p 'Server Domain: ' serverDomain
 else
-  export serverDomain=${1}
+  serverDomain=${1}
 fi
 
 if [ "${2}" == "" ] ; then
   read -sp 'Server Password: ' serverPassword
 else
-  export serverPassword=${2}
+  serverPassword=${2}
 fi
 
 cd /home/ubuntu
@@ -57,4 +57,8 @@ else
     dpkg --print-architecture
 fi
 
-/bin/bash test.sh "$serverDomain"
+echo "----------------------------------------"
+echo "# "
+echo "# ALL IN ONE SETUP SCRIPT DONE"
+echo "# "
+echo "----------------------------------------"

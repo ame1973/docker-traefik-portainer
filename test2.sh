@@ -26,30 +26,3 @@ echo "Traefik login Username: ${traefikUsername}"
 echo "Traefik login Password: ${traefikPassword}"
 
 echo "----------------------------------------"
-
-echo "[INFO] updating traefik portainer docker-compose.yml config..."
-cd core
-cp docker-compose.example docker-compose.yml
-sed -i "s/TRAEFIK_DOMAIN/${traefikDomain}/g" docker-compose.yml
-sed -i "s/PORTAINER_DOMAIN/${portainerDomain}/g" docker-compose.yml
-
-echo "[INFO] updating traefik.yml config..."
-cd ../volumes/traefik
-cp traefik.example traefik.yml
-sed -i "s/SSH_EMAIL_ADDRESS/${traefikEmail}/g" traefik.yml
-
-sudo chmod 600 acme.json
-
-echo "[INFO] updating dynamic.yml config..."
-cd configurations
-cp dynamic.example dynamic.yml
-htpasswd -b -c password $traefikUsername $traefikPassword
-password=$(head -n 1 password)
-sed -i "s/NEW_AUTH_STRING/${password}/g" dynamic.yml
-rm password
-
-echo "[INFO] DEPLOY DOCKER Service DONE"
-
-echo "[INFO] Booting up docker service..."
-cd ../../../core
-docker compose up -d
