@@ -4,11 +4,6 @@ echo "----------------------------------------"
 
 echo "[INFO] START DEPLOY DOCKER Service"
 
-echo "serverDomain: ${1}"
-echo "serverDomain: $serverDomain"
-echo "serverPassword: ${2}"
-echo "serverPassword: $serverPassword"
-
 if  [${serverDomain} == ""] || [${serverPassword} == ""]; then
   read -p 'Portainer Panel Domain: ' portainerDomain
   read -p 'Traefik Panel Domain: ' traefikDomain
@@ -54,6 +49,6 @@ echo "[INFO] DEPLOY DOCKER Service DONE"
 
 pwd
 
-cd ../../core
+cd ../../../core
 
 docker compose up -d
