@@ -2,10 +2,14 @@
 
 if [ "${1}" == "" ] ; then
   read -p 'Server Domain: ' serverDomain
+else
+  export serverDomain=${1}
 fi
 
 if [ "${2}" == "" ] ; then
   read -sp 'Server Password: ' serverPassword
+else
+  export serverPassword=${2}
 fi
 
 
