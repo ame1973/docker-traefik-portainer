@@ -41,4 +41,6 @@ docker compose version
 
 docker network create traefik-proxy
 
+echo "alias docker-compose=docker compose" >> /home/ubuntu/.bashrc
+
 echo "[INFO] Setup Docker DONE"
