@@ -23,6 +23,14 @@ else
   serverPassword=${2}
 fi
 
+if [ $( . /etc/os-release ; echo $NAME) == "Ubuntu" ] ; then
+  if [ $( . /etc/os-release ; echo $VERSION_ID) == "22.04" ] ; then
+    echo "[INFO] IS UBUNTU 22.04 VERSION"
+    echo "[INFO] FIX BUG: https://stackoverflow.com/questions/73397110/how-to-stop-ubuntu-pop-up-daemons-using-outdated-libraries-when-using-apt-to-i"
+    sed -i "/#\$nrconf{restart} = 'i';/s/.*/\$nrconf{restart} = 'a';/" /etc/needrestart/needrestart.conf
+  fi
+fi
+
 cd /home/ubuntu
 
 apt update && apt upgrade -y
