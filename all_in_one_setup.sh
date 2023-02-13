@@ -23,6 +23,18 @@ else
   serverPassword=${2}
 fi
 
+if [ "${3}" == "" ] ; then
+  read -sp 'Server Panel Username: ' serverUsername
+else
+  serverUsername=${3}
+fi
+
+if [ "${4}" == "" ] ; then
+  read -sp 'Server Panel Email: ' serverEmail
+else
+  serverEmail=${4}
+fi
+
 if [ $( . /etc/os-release ; echo $NAME) == "Ubuntu" ] ; then
   if [ $( . /etc/os-release ; echo $VERSION_ID) == "22.04" ] ; then
     echo "[INFO] IS UBUNTU 22.04 VERSION"
@@ -51,7 +63,7 @@ cd /home/ubuntu/docker-traefik-portainer
 
 /bin/bash setup_docker.sh
 
-/bin/bash depoly.sh $serverDomain $serverPassword
+/bin/bash depoly.sh $serverDomain $serverPassword $serverUsername $serverEmail
 
 echo "[INFO] Setup done"
 

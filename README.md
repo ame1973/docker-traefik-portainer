@@ -62,6 +62,6 @@ $ docker-compose up -d
 
 auto deploy script
 ```
-curl -s -H 'Pragma: no-cache' https://raw.githubusercontent.com/ame1973/docker-traefik-portainer/master/all_in_one_setup.sh | sudo bash -s {your_base_domain} {your_panel_auth_password}
+curl -s -H 'Pragma: no-cache' https://raw.githubusercontent.com/ame1973/docker-traefik-portainer/master/all_in_one_setup.sh?_=$(date +%s) | sudo bash -s {{PANEL_BASE_DOMAIN}} {{TRAEFIK_PASSWORD}} {{PANEL_USERNAME}} {{SSH_EMAIL}}
 ```
 
