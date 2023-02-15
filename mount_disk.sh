@@ -52,4 +52,7 @@ sudo echo "UUID=$UUID	/home/ubuntu/project	$FSTYPE	defaults,nofail	0	2" >> /etc/
 sudo chown ubuntu /home/ubuntu/project
 sudo chgrp ubuntu /home/ubuntu/project
 
+cp /home/ubuntu/docker-traefik-portainer/shell/up_all.sh /home/ubuntu/project/up_all.sh
+cp /home/ubuntu/docker-traefik-portainer/shell/down_all.sh /home/ubuntu/project/down_all.sh
+
 echo "[INFO] Mount Disk DONE"
