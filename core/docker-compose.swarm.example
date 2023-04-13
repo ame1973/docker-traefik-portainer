@@ -15,19 +15,18 @@ services:
       - ./../volumes/traefik/acme.json:/acme.json
       - ./../volumes/traefik/configurations:/configurations
     deploy:
-          labels:
-            - "traefik.enable=true"
-            - "traefik.docker.network=traefik_swarm"
-            - "traefik.http.routers.traefik.entrypoints=websecure"
-            - "traefik.http.routers.traefik.rule=Host(`TRAEFIK_DOMAIN`)"
-            - "traefik.http.routers.traefik.middlewares=user-auth@file"
-            - "traefik.http.routers.traefik.service=api@internal"
-            - "traefik.http.services.traefik.loadbalancer.server.port=8080"
-          replicas: 1
+      labels:
+        - "traefik.enable=true"
+        - "traefik.docker.network=traefik_swarm"
+        - "traefik.http.routers.traefik.entrypoints=websecure"
+        - "traefik.http.routers.traefik.rule=Host(`TRAEFIK_DOMAIN`)"
+        - "traefik.http.routers.traefik.middlewares=user-auth@file"
+        - "traefik.http.routers.traefik.service=api@internal"
+        - "traefik.http.services.traefik.loadbalancer.server.port=8080"
+      replicas: 1
 
   portainer:
-    image: portainer/portainer-ce:latest
-    container_name: core-portainer
+    image: portainer/portainer-ee:latest
     networks:
       - traefik_swarm
     volumes:
@@ -35,14 +34,14 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - ./../volumes/portainer:/data
     deploy:
-          labels:
-            - "traefik.enable=true"
-            - "traefik.docker.network=traefik_swarm"
-            - "traefik.http.routers.portainer.entrypoints=websecure"
-            - "traefik.http.routers.portainer.rule=Host(`PORTAINER_DOMAIN`)"
-            - "traefik.http.routers.portainer.service=portainer"
-            - "traefik.http.services.portainer.loadbalancer.server.port=9000"
-          replicas: 1
+      labels:
+        - "traefik.enable=true"
+        - "traefik.docker.network=traefik_swarm"
+        - "traefik.http.routers.portainer.entrypoints=websecure"
+        - "traefik.http.routers.portainer.rule=Host(`PORTAINER_DOMAIN`)"
+        - "traefik.http.routers.portainer.service=portainer"
+        - "traefik.http.services.portainer.loadbalancer.server.port=9000"
+      replicas: 1
 
 networks:
   traefik_swarm:
