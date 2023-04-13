@@ -69,7 +69,7 @@ echo "[INFO] Setup done"
 
 cd /home/ubuntu/docker-laravel-base-env
 
-/bin/bash start.sh
+/bin/bash start_swarm.sh
 
 #if [ $(dpkg --print-architecture) == "amd64" ]; then
 #    echo "amd64"
