@@ -45,6 +45,7 @@ cd configurations
 cp dynamic.example dynamic.yml
 htpasswd -b -c passwordfile $traefikUsername $traefikPassword
 passwordString=$(head -n 1 passwordfile)
+passwordString=$(printf '%s\n' "$passwordString" | sed -e 's/[]\/$*.^[]/\\&/g');
 sed -i "s/NEW_AUTH_STRING/${passwordString}/g" dynamic.yml
 rm passwordfile
 
