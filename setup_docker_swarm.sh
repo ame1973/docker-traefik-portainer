@@ -39,6 +39,10 @@ docker -v
 
 docker compose version
 
+echo "[INFO] Setup Docker Swarm mode"
+
+docker swarm init
+
 docker network create --driver overlay --attachable --scope swarm traefik_swarm
 
 echo "alias docker-compose='docker compose'" >> /home/ubuntu/.bashrc

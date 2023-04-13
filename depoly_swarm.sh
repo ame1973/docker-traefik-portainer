@@ -53,4 +53,4 @@ echo "[INFO] DEPLOY DOCKER Service DONE"
 
 echo "[INFO] Booting up docker service..."
 cd ../../../core
-docker compose up -d
+docker stack deploy -c ./docker-compose.yml core
