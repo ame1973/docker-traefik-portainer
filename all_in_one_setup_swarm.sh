@@ -2,7 +2,7 @@
 
 echo "----------------------------------------"
 echo "# "
-echo "# ALL IN ONE SETUP SCRIPT [SWARM MODE] v1.0.0"
+echo "# ALL IN ONE SETUP SCRIPT [SWARM MODE] v1.0.1"
 echo "# "
 echo "----------------------------------------"
 

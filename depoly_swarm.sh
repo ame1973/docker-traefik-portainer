@@ -35,7 +35,7 @@ sed -i "s/PORTAINER_DOMAIN/${portainerDomain}/g" docker-compose.yml
 
 echo "[INFO] updating traefik.yml config..."
 cd ../volumes/traefik
-cp traefik.example traefik.yml
+cp traefik_swarm.example traefik.yml
 sed -i "s/SSH_EMAIL_ADDRESS/${traefikEmail}/g" traefik.yml
 
 sudo chmod 600 acme.json
