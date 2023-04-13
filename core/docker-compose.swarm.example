@@ -3,9 +3,6 @@ version: "3"
 services:
   traefik:
     image: traefik:latest
-    restart: unless-stopped
-    security_opt:
-      - no-new-privileges:true
     networks:
       - traefik_swarm
     ports:
@@ -31,9 +28,6 @@ services:
   portainer:
     image: portainer/portainer-ce:latest
     container_name: core-portainer
-    restart: unless-stopped
-    security_opt:
-      - no-new-privileges:true
     networks:
       - traefik_swarm
     volumes:
