@@ -13,6 +13,11 @@ http:
         users:
           - "NEW_AUTH_STRING"
 
+    cloudflarewarp:
+      plugin:
+        cloudflarewarp:
+          disableDefault: true
+
 tls:
   options:
     default:
