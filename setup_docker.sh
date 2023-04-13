@@ -28,7 +28,7 @@ sudo service docker start
 
 sudo gpasswd -a ubuntu docker
 
-/usr/bin/newgrp dokcer <<EONG
+/usr/bin/newgrp docker <<EONG
 echo "newgrp docker"
 id
 EONG
