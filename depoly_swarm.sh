@@ -4,7 +4,7 @@ echo "----------------------------------------"
 
 echo "[INFO] START DEPLOY DOCKER Service"
 
-if [ -z "${1}" ] || [ -z "${2}" || [ -z "${3}" || [ -z "${4}" ]; then
+if [ -z "${1}" ] || [ -z "${2}" ] || [ -z "${3}" ] || [ -z "${4}" ]; then
   read -p 'Portainer Panel Domain: ' portainerDomain
   read -p 'Traefik Panel Domain: ' traefikDomain
   read -p 'Traefik SSH Email: ' traefikEmail
