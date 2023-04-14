@@ -2,7 +2,7 @@
 
 echo "----------------------------------------"
 echo "# "
-echo "# ALL IN ONE SETUP SCRIPT [SWARM MODE] v1.0.1"
+echo "# ALL IN ONE SETUP SCRIPT  [SWARM MODE] v1.0.2"
 echo "# "
 echo "----------------------------------------"
 
@@ -11,28 +11,39 @@ if [[ $EUID > 0 ]]; then # we can compare directly with this syntax.
   exit 1
 fi
 
-if [ "${1}" == "" ] ; then
-  read -p 'Server Domain: ' serverDomain
-else
-  serverDomain=${1}
-fi
+BASE_SERVICE=false
 
-if [ "${2}" == "" ] ; then
-  read -sp 'Server Password: ' serverPassword
-else
-  serverPassword=${2}
-fi
+while getopts ":d:p:u:e:b" argv
+do
+   case $argv in
+       d) # -d
+           SERVER_DOMAIN=$OPTARG
+           ;;
+       p) # -p
+           SERVER_PASSWORD=$OPTARG
+           ;;
+       u) # -u
+           SERVER_USERNAME=$OPTARG
+           ;;
+       e) # -e
+           SERVER_EMAIL=$OPTARG
+           ;;
+       b)
+           BASE_SERVICE=true
+           ;;
+       ?)
+           echo "Unknown argument(s)."
+           exit
+           ;;
+   esac
+done
 
-if [ "${3}" == "" ] ; then
-  read -sp 'Server Panel Username: ' serverUsername
-else
-  serverUsername=${3}
-fi
+shift $((OPTIND-1))
 
-if [ "${4}" == "" ] ; then
-  read -sp 'Server Panel Email: ' serverEmail
-else
-  serverEmail=${4}
+if [ -z ${SERVER_DOMAIN} ]||[ -z ${SERVER_PASSWORD} ]||[ -z ${SERVER_USERNAME} ]||[ -z ${SERVER_EMAIL} ];then
+        echo "Missing options,exit"
+        echo "Usage: $0 -d SERVER_DOMAIN -p SERVER_PASSWORD -u SERVER_USERNAME -e SERVER_EMAIL [-b BASE_SERVICE]"
+        exit 1
 fi
 
 if [ $( . /etc/os-release ; echo $NAME) == "Ubuntu" ] ; then
@@ -49,27 +60,31 @@ apt update && apt upgrade -y
 
 apt install sudo git curl -y
 
+echo "[INFO] Clone traefik and portainer repo"
+
 git clone https://github.com/ame1973/docker-traefik-portainer.git
-
-git clone https://github.com/ame1973/docker-laravel-base-env.git
-
-echo "[INFO] Clone done"
-
-# Install Docker
 
 cd /home/ubuntu/docker-traefik-portainer
 
+# mount disk
 /bin/bash mount_disk.sh Y
 
+# setup docker swarm
 /bin/bash setup_docker_swarm.sh
 
-/bin/bash depoly_swarm.sh $serverDomain $serverPassword $serverUsername $serverEmail
+/bin/bash depoly_swarm.sh $SERVER_DOMAIN $SERVER_PASSWORD $SERVER_USERNAME $SERVER_EMAIL
 
 echo "[INFO] Setup done"
 
-cd /home/ubuntu/docker-laravel-base-env
+# check BASE_SERVICE is true or false
+if [ $BASE_SERVICE == true ]; then
+    echo "[INFO] BASE_SERVICE enable"
+  git clone https://github.com/ame1973/docker-laravel-base-env.git
 
-/bin/bash start_swarm.sh
+  cd /home/ubuntu/docker-laravel-base-env
+
+  /bin/bash start_swarm.sh
+fi
 
 #if [ $(dpkg --print-architecture) == "amd64" ]; then
 #    echo "amd64"
