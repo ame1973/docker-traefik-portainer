@@ -32,7 +32,7 @@ do
            BASE_SERVICE=true
            ;;
        ?)
-           echo "Unknown argument(s)."
+           echo "Unknown argument(s). Usage: $0 -d SERVER_DOMAIN -p SERVER_PASSWORD -u SERVER_USERNAME -e SERVER_EMAIL [-b install base service]"
            exit
            ;;
    esac
