@@ -13,8 +13,9 @@ fi
 
 BASE_SERVICE=false
 LOCATION="/home/ubuntu"
+MOUNT_DISK="nvme1n1"
 
-while getopts ":d:p:u:e:l:b" argv
+while getopts ":d:p:u:e:l:m:b" argv
 do
    case $argv in
        d) # -d
@@ -35,8 +36,11 @@ do
        l)
            LOCATION=$OPTARG
            ;;
+       m)
+           MOUNT_DISK=$OPTARG
+           ;;
        ?)
-           echo "Unknown argument(s). Usage: $0 -d SERVER_DOMAIN -p SERVER_PASSWORD -u SERVER_USERNAME -e SERVER_EMAIL [-b install base service]"
+           echo "Unknown argument(s). Usage: $0 -d SERVER_DOMAIN -p SERVER_PASSWORD -u SERVER_USERNAME -e SERVER_EMAIL -l LOCATION -m MOUNT_DISK [-b install base service]"
            exit
            ;;
    esac
@@ -73,10 +77,10 @@ git clone https://github.com/ame1973/docker-traefik-portainer.git
 cd ${LOCATION}/docker-traefik-portainer
 
 # mount disk
-/bin/bash mount_disk.sh Y
+/bin/bash mount_disk.sh -l ${LOCATION} -m ${MOUNT_DISK}
 
 # setup docker swarm
-/bin/bash setup_docker.sh
+/bin/bash setup_docker_swarm.sh -l ${LOCATION}
 
 /bin/bash depoly.sh $SERVER_DOMAIN $SERVER_PASSWORD $SERVER_USERNAME $SERVER_EMAIL
 

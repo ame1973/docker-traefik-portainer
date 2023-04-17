@@ -5,17 +5,17 @@ echo "[INFO] Running mount_disk.sh"
 
 
 LOCATION="/home/ubuntu"
-DISK_NAME="nvme1n1"
+MOUNT_DISK_NAME="nvme1n1"
 
 
-while getopts ":l:d:" argv
+while getopts ":l:m:" argv
 do
    case $argv in
        l)
            LOCATION=$OPTARG
            ;;
-       d)
-           DISK_NAME=$OPTARG
+       m)
+           MOUNT_DISK_NAME=$OPTARG
            ;;
        ?)
            echo "Unknown argument(s). Usage: $0 [-l install path (/home/ubuntu)] [-d disk name (nvme1n1)]"
@@ -27,34 +27,34 @@ done
 shift $((OPTIND-1))
 
 echo "[INFO] LOCATION: ${LOCATION}"
-echo "[INFO] DISK_NAME: ${DISK_NAME}"
+echo "[INFO] DISK_NAME: ${MOUNT_DISK_NAME}"
 
 if [[ $EUID > 0 ]]; then # we can compare directly with this syntax.
   echo "Please run as root/sudo"
   exit 1
 fi
 
-if test -b /dev/${DISK_NAME}; then
-    echo "[INFO] Has ${DISK_NAME}"
+if test -b /dev/${MOUNT_DISK_NAME}; then
+    echo "[INFO] Has ${MOUNT_DISK_NAME}"
 else
-    echo "[ERROR] not ${DISK_NAME}"
+    echo "[ERROR] not ${MOUNT_DISK_NAME}"
     exit 1
 fi
 
 if grep -qs "${LOCATION}/project" /proc/mounts; then
-    echo "[INFO] /dev/${DISK_NAME} It's mounted."
-    lsblk | grep ${DISK_NAME}
+    echo "[INFO] /dev/${MOUNT_DISK_NAME} It's mounted."
+    lsblk | grep ${MOUNT_DISK_NAME}
     exit 1
 else
-    echo "[INFO] /dev/${DISK_NAME} It's not mounted."
+    echo "[INFO] /dev/${MOUNT_DISK_NAME} It's not mounted."
 fi
 
 
-sudo mkfs -t xfs /dev/${DISK_NAME}
+sudo mkfs -t xfs /dev/${MOUNT_DISK_NAME}
 
 sudo mkdir ${LOCATION}/project
 
-sudo mount /dev/${DISK_NAME} ${LOCATION}/project
+sudo mount /dev/${MOUNT_DISK_NAME} ${LOCATION}/project
 
 sudo cp /etc/fstab /etc/fstab.old
 
