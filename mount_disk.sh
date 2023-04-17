@@ -51,12 +51,13 @@ else
 fi
 
 
-driveCount=$(ls -l /dev/vdb* | wc -l)
+driveCount=$(ls -l /dev/${MOUNT_DISK_NAME} | wc -l)
 
 if [ "$backupCount" -eq 1 ]; then
   echo "[INFO] /dev/${MOUNT_DISK_NAME} is not partitioned."
   parted /dev/${MOUNT_DISK_NAME} mklabel gpt --script
   parted /dev/${MOUNT_DISK_NAME} mkpart primary 0% 100%
+  MOUNT_DISK_NAME="${MOUNT_DISK_NAME}1"
 else
   echo "[INFO] /dev/${MOUNT_DISK_NAME} is partitioned."
   exit 1
