@@ -4,7 +4,7 @@ echo "[INFO] Running setup_docker"
 
 LOCATION="/home/ubuntu"
 
-while getopts ":l" argv
+while getopts ":l:" argv
 do
    case $argv in
        l)

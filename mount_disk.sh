@@ -7,14 +7,15 @@ echo "[INFO] Running mount_disk.sh"
 LOCATION="/home/ubuntu"
 DISK_NAME="nvme1n1"
 
-while getopts ":ld" argv
+
+while getopts ":l:d:" argv
 do
    case $argv in
        l)
            LOCATION=$OPTARG
            ;;
        d)
-           LOCATION=$OPTARG
+           DISK_NAME=$OPTARG
            ;;
        ?)
            echo "Unknown argument(s). Usage: $0 [-l install path (/home/ubuntu)] [-d disk name (nvme1n1)]"
@@ -25,16 +26,8 @@ done
 
 shift $((OPTIND-1))
 
-DEFAULT="n"
-if [ "${1}" != "y" ] && [ "${1}" != "Y" ]; then
-    read -p "THIS Script ONLY FOR AWS Ubuntu OS!! SURE? [y/N]: " confirm
-    confirm="${confirm:-${DEFAULT}}"
-    if [ "${confirm}" != "y" ] && [ "${confirm}" != "Y" ]; then
-        echo "[INFO] End script"
-        exit 0;
-    fi
-fi
-
+echo "[INFO] LOCATION: ${LOCATION}"
+echo "[INFO] DISK_NAME: ${DISK_NAME}"
 
 if [[ $EUID > 0 ]]; then # we can compare directly with this syntax.
   echo "Please run as root/sudo"

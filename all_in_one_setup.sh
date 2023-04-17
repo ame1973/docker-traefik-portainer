@@ -14,7 +14,7 @@ fi
 BASE_SERVICE=false
 LOCATION="/home/ubuntu"
 
-while getopts ":d:p:u:e:bl" argv
+while getopts ":d:p:u:e:l:b" argv
 do
    case $argv in
        d) # -d

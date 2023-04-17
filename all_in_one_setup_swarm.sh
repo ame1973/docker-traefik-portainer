@@ -14,7 +14,7 @@ fi
 BASE_SERVICE=false
 LOCATION="/home/ubuntu"
 
-while getopts ":d:p:u:e:bl" argv
+while getopts ":d:p:u:e:l:b" argv
 do
    case $argv in
        d) # -d
@@ -43,6 +43,13 @@ do
 done
 
 shift $((OPTIND-1))
+
+#echo "[INFO] SERVER_DOMAIN: ${SERVER_DOMAIN}"
+#echo "[INFO] SERVER_PASSWORD: ${SERVER_PASSWORD}"
+#echo "[INFO] SERVER_USERNAME: ${SERVER_USERNAME}"
+#echo "[INFO] SERVER_EMAIL: ${SERVER_EMAIL}"
+#echo "[INFO] BASE_SERVICE: ${BASE_SERVICE}"
+#echo "[INFO] LOCATION: ${LOCATION}"
 
 if [ -z ${SERVER_DOMAIN} ]||[ -z ${SERVER_PASSWORD} ]||[ -z ${SERVER_USERNAME} ]||[ -z ${SERVER_EMAIL} ];then
         echo "Missing options,exit"
