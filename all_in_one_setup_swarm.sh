@@ -12,8 +12,9 @@ if [[ $EUID > 0 ]]; then # we can compare directly with this syntax.
 fi
 
 BASE_SERVICE=false
+LOCATION="/home/ubuntu"
 
-while getopts ":d:p:u:e:b" argv
+while getopts ":d:p:u:e:bl" argv
 do
    case $argv in
        d) # -d
@@ -30,6 +31,9 @@ do
            ;;
        b)
            BASE_SERVICE=true
+           ;;
+       l)
+           LOCATION=$OPTARG
            ;;
        ?)
            echo "Unknown argument(s). Usage: $0 -d SERVER_DOMAIN -p SERVER_PASSWORD -u SERVER_USERNAME -e SERVER_EMAIL [-b install base service]"
@@ -54,7 +58,7 @@ if [ $( . /etc/os-release ; echo $NAME) == "Ubuntu" ] ; then
   fi
 fi
 
-cd /home/ubuntu
+cd ${LOCATION}
 
 apt update && apt upgrade -y
 
@@ -64,7 +68,7 @@ echo "[INFO] Clone traefik and portainer repo"
 
 git clone https://github.com/ame1973/docker-traefik-portainer.git
 
-cd /home/ubuntu/docker-traefik-portainer
+cd ${LOCATION}/docker-traefik-portainer
 
 # mount disk
 /bin/bash mount_disk.sh Y
@@ -78,10 +82,10 @@ echo "[INFO] Setup done"
 
 # check BASE_SERVICE is true or false
 if [ $BASE_SERVICE == true ]; then
-    echo "[INFO] BASE_SERVICE enable"
+  echo "[INFO] BASE_SERVICE enable"
   git clone https://github.com/ame1973/docker-laravel-base-env.git
 
-  cd /home/ubuntu/docker-laravel-base-env
+  cd ${LOCATION}/docker-laravel-base-env
 
   /bin/bash start_swarm.sh
 fi
