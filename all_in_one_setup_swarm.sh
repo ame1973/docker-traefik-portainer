@@ -36,7 +36,7 @@ do
            LOCATION=$OPTARG
            ;;
        ?)
-           echo "Unknown argument(s). Usage: $0 -d SERVER_DOMAIN -p SERVER_PASSWORD -u SERVER_USERNAME -e SERVER_EMAIL [-b install base service]"
+           echo "Unknown argument(s). Usage: $0 -d SERVER_DOMAIN -p SERVER_PASSWORD -u SERVER_USERNAME -e SERVER_EMAIL [-b install base service] [-l install path]"
            exit
            ;;
    esac

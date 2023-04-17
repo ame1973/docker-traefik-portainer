@@ -2,6 +2,23 @@
 echo "----------------------------------------"
 echo "[INFO] Running setup_docker"
 
+LOCATION="/home/ubuntu"
+
+while getopts ":l" argv
+do
+   case $argv in
+       l)
+           LOCATION=$OPTARG
+           ;;
+       ?)
+           echo "Unknown argument(s). Usage: $0 [-l install path (/home/ubuntu)]"
+           exit
+           ;;
+   esac
+done
+
+shift $((OPTIND-1))
+
 sudo apt update && sudo apt upgrade -y
 
 sudo apt-get -y install \
@@ -41,6 +58,6 @@ docker compose version
 
 docker network create traefik-proxy
 
-echo "alias docker-compose='docker compose'" >> /home/ubuntu/.bashrc
+echo "alias docker-compose='docker compose'" >> ${LOCATION}/.bashrc
 
 echo "[INFO] Setup Docker DONE"
