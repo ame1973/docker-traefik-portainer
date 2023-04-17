@@ -1,7 +1,8 @@
 #!/bin/bash
 
 echo "----------------------------------------"
-echo "[INFO] Running mount_disk.sh"
+echo "[INFO] Running mount_disk.sh v1.0.0"
+echo "----------------------------------------"
 
 
 LOCATION="/home/ubuntu"
@@ -35,18 +36,30 @@ if [[ $EUID > 0 ]]; then # we can compare directly with this syntax.
 fi
 
 if test -b /dev/${MOUNT_DISK_NAME}; then
-    echo "[INFO] Has ${MOUNT_DISK_NAME}"
+  echo "[INFO] Has ${MOUNT_DISK_NAME}"
 else
-    echo "[ERROR] not ${MOUNT_DISK_NAME}"
-    exit 1
+  echo "[ERROR] not ${MOUNT_DISK_NAME}"
+  exit 1
 fi
 
 if grep -qs "${LOCATION}/project" /proc/mounts; then
-    echo "[INFO] /dev/${MOUNT_DISK_NAME} It's mounted."
-    lsblk | grep ${MOUNT_DISK_NAME}
-    exit 1
+  echo "[INFO] /dev/${MOUNT_DISK_NAME} It's mounted."
+  lsblk | grep ${MOUNT_DISK_NAME}
+  exit 1
 else
-    echo "[INFO] /dev/${MOUNT_DISK_NAME} It's not mounted."
+  echo "[INFO] /dev/${MOUNT_DISK_NAME} It's not mounted."
+fi
+
+
+driveCount=$(ls -l /dev/vdb* | wc -l)
+
+if [ "$backupCount" -eq 1 ]; then
+  echo "[INFO] /dev/${MOUNT_DISK_NAME} is not partitioned."
+  parted /dev/${MOUNT_DISK_NAME} mklabel gpt --script
+  parted /dev/${MOUNT_DISK_NAME} mkpart primary 0% 100%
+else
+  echo "[INFO] /dev/${MOUNT_DISK_NAME} is partitioned."
+  exit 1
 fi
 
 
